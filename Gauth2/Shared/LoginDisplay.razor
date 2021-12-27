@@ -7,20 +7,16 @@
 
 <AuthorizeView>
     <Authorized>
-        Hello, @context.User.Identity.Name!
-        Email =  
-       <h1>@context.User.FindFirst(ClaimTypes.Uri)?.Value </h1>
-       <h1>@context.User.FindFirst(ClaimTypes.Email)?.Value </h1>
-         <h1>@context.User.FindFirst(ClaimTypes.Email) </h1>
-           <h1>@context.User.FindFirst(ClaimTypes.Name)?.Value </h1>
-             <h1>@context.User.FindFirst(ClaimTypes.Name)?.Value </h1>
-            End
+        <img src="@context.User.FindFirst(ClaimTypes.Uri)?.Value" 
+             class="user-img" 
+             title="@context.User.FindFirst(ClaimTypes.Email)?.Value"/>
         <button class="nav-link btn btn-link" @onclick="BeginSignOut">Log out</button>
     </Authorized>
     <NotAuthorized>
         <a href="authentication/login">Log in</a>
     </NotAuthorized>
 </AuthorizeView>
+
 
 @code{
     private async Task BeginSignOut(MouseEventArgs args)

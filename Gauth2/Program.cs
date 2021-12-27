@@ -18,7 +18,7 @@ namespace Gauth2
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents.Add<App>("app");
 
-            builder.Services.AddTransient(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+            builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
             builder.Services.AddOidcAuthentication<RemoteAuthenticationState, CustomUserAccount>(options =>
             {
@@ -28,7 +28,6 @@ namespace Gauth2
 
             await builder.Build().RunAsync();
         }
-
 
     }
 }

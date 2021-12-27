@@ -17,8 +17,8 @@ namespace Gauth2
 
             if (initialUser.Identity.IsAuthenticated)
             {
-                ((ClaimsIdentity)initialUser.Identity).AddClaim(new Claim(ClaimTypes.Email, account.Email));
-                ((ClaimsIdentity)initialUser.Identity).AddClaim(new Claim(ClaimTypes.Uri, account.Picture, ClaimValueTypes.String));
+                //((ClaimsIdentity)initialUser.Identity).AddClaim(new Claim(ClaimTypes.Email, account.Email));
+                //((ClaimsIdentity)initialUser.Identity).AddClaim(new Claim(ClaimTypes.Uri, account.Picture, ClaimValueTypes.String));
             }
 
             return initialUser;
