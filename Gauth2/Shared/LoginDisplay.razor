@@ -5,23 +5,39 @@
 @inject NavigationManager Navigation
 @inject SignOutSessionStateManager SignOutManager
 
-<AuthorizeView>
-    <Authorized>
-        <img src="@context.User.FindFirst(ClaimTypes.Uri)?.Value" 
-             class="user-img" 
-             title="@context.User.FindFirst(ClaimTypes.Email)?.Value"/>
-        <button class="nav-link btn btn-link" @onclick="BeginSignOut">Log out</button>
-    </Authorized>
-    <NotAuthorized>
-        <a href="authentication/login">Log in</a>
-    </NotAuthorized>
-</AuthorizeView>
-
+<div class="user-info">
+    <div class="btn-group">
+        <Dropdown>
+            <BtnContent>
+                <AuthorizeView>
+                    <Authorized>
+                        <img src="@context.User.FindFirst(ClaimTypes.Uri)?.Value" title="@context.User.FindFirst(ClaimTypes.Email)?.Value"/>
+                    </Authorized>
+                    <NotAuthorized>
+                        <img src="img/default-user.png"/>
+                    </NotAuthorized>
+                </AuthorizeView>
+            </BtnContent>
+            <ChildContent>
+                <AuthorizeView>
+                    <Authorized>
+                        <DropdownListItem OnClick="@BeginSignOut">Logout</DropdownListItem>
+                    </Authorized>
+                    <NotAuthorized>
+                        <DropdownListItem OnClick="@(e => Navigation.NavigateTo("/authentication/login"))">Login</DropdownListItem>
+                        <div tabindex="-1" class="dropdown-divider"></div>
+                        <DropdownListItem OnClick="@(e => Console.WriteLine("Registration should happen."))">Register</DropdownListItem>
+                    </NotAuthorized>
+                </AuthorizeView>
+            </ChildContent>
+        </Dropdown>
+    </div>
+</div>
 
 @code{
     private async Task BeginSignOut(MouseEventArgs args)
     {
         await SignOutManager.SetSignOutState();
-        Navigation.NavigateTo("authentication/logout");
+        Navigation.NavigateTo("/authentication/logout");
     }
 }

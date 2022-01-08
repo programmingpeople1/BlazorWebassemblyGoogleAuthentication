@@ -1,0 +1,19 @@
+﻿<a class="dropdown-item" style="cursor: pointer" tabindex="0" @onclick="HandleClick">@ChildContent</a>
+
+@code {
+
+    [CascadingParameter]
+    private Dropdown dropdown { get; set; }
+
+    [Parameter]
+    public EventCallback<MouseEventArgs> OnClick { get; set; }
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    private async Task HandleClick(MouseEventArgs args)
+    {
+        await OnClick.InvokeAsync(args);
+        dropdown.ToggleMenu();
+    }
+}

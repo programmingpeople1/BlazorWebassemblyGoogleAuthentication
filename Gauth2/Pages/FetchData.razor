@@ -1,9 +1,9 @@
-﻿@page "/fetchdata"
+@page "/"
+@using Microsoft.AspNetCore.Authorization
 @inject HttpClient Http
+@attribute [Authorize]
 
-<h1>Weather forecast</h1>
-
-<p>This component demonstrates fetching data from the server.</p>
+<h1>Weather Forecast</h1>
 
 @if (forecasts == null)
 {

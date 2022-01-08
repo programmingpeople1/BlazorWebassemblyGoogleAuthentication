@@ -1,0 +1,31 @@
+﻿<button class="p-0 btn"
+        data-toggle="dropdown"
+        @onclick="e => this._show = !this._show"
+        aria-haspopup="true"
+        aria-expanded="false">
+    @BtnContent
+</button>
+<CascadingValue Value="@this">
+    <div class="dropdown-menu @(_show ? "show" : "")" 
+         tabindex="-1" role="menu"
+         aria-hidden="true"
+         style="position: absolute; transform: translate3d(-180px, -3px, 0px); top: 0px; left: 0px; will-change: transform;">
+        @ChildContent
+    </div>
+</CascadingValue>
+
+@code {
+    [Parameter]
+    public RenderFragment BtnContent { get; set; }
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+    
+    private bool _show = false;
+
+    public void ToggleMenu()
+    {
+        this._show = false;
+        StateHasChanged();
+    }
+}

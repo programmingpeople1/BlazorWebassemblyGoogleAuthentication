@@ -5,7 +5,10 @@ namespace Gauth2
 {
     public class CustomUserAccount : RemoteUserAccount
     {
-        [JsonPropertyName("azp")]
-        public string azp { get; set; }      
+        [JsonPropertyName("email")]
+        public string Email { get; set; }
+
+        [JsonPropertyName("picture")]
+        public string Picture { get; set; }
     }
 }
